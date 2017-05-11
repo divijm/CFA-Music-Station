@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form action="/" method="post">
+       Song Name: <input type="text" name="song_name"><br>
+       Artist: <input type="text" name="artist"><br>
+       Year: <input type="text" name="year"><br>
+       <input type="submit">
+    </form>
+
+    <ul>
+      <% allsongs.forEach(song => { %>
+        <li><%= song.name %> </li>
+        <li><%= song.artist %> </li>
+        <li><%= song.year %> </li>
+         <a href="/<%= song._id %>/edit">Edit</a> | <form action="/<%= song._id %>/delete" method="post">
+            <input type="submit" value="delete">
+         </form>
+      <% }) %>
+    </ul>
+
+  </body>
+</html>
