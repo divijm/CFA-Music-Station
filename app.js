@@ -20,9 +20,10 @@ console.log(token)
 var mongoose = require('mongoose');
 
 // database is called music_station
+mongoose.connect(process.env.MONGOLAB_MS);
 // mongoose.connect('mongodb://localhost/musicStation');
 // if (process.env.MONGODB_MS) {
- mongoose.connect('mongodb://<user>:<password>@ds151279.mlab.com:51279/musicstation');
+ // mongoose.connect('mongodb://<user>:<password>@ds151279.mlab.com:51279/musicstation');
  const { connection: db } = mongoose;
 
 //     // mongoose.connect(process.env.MONGODB_URI);
