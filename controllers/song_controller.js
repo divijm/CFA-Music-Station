@@ -35,6 +35,7 @@ exports.createSong = (req, res) => {
 };
 
 exports.createSongApi = (req, res) => {
+  console.log(req)
   const artist = req.query.artist;
   const song_name = req.query.song_name;
   const year = req.query.year;

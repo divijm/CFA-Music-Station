@@ -7,8 +7,16 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+const authApi = require('./middleware/authApi');
 
 var app = express();
+
+var jwt = require('jsonwebtoken');
+// Secretcode is a hash/salt. Encrypts it!
+// JWT.Sign takes in two attributes - emails and password
+var token = jwt.sign( {email: 'divij.mehra.16@gmail.com'}, 'secretcode');
+console.log(token)
+
 var mongoose = require('mongoose');
 
 // database is called music_station
@@ -31,6 +39,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api*', authApi);
+app.use('/', index);
+app.use('/users', users);
 
 app.use('/', index);
 app.use('/users', users);
