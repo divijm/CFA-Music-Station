@@ -20,7 +20,16 @@ console.log(token)
 var mongoose = require('mongoose');
 
 // database is called music_station
-mongoose.connect('mongodb://localhost/musicStation');
+// mongoose.connect('mongodb://localhost/musicStation');
+if (process.env.MONGODB_MS) {
+ mongoose.connect('mongodb://<user>:<password>@ds151279.mlab.com:51279/musicstation');
+
+    // mongoose.connect(process.env.MONGODB_URI);
+} else {
+ mongoose.connect('mongodb://<user>:<password>@ds151279.mlab.com:51279/musicstation');
+
+    // mongoose.connect('mongodb://localhost/fitMe')
+}
 const { connection: db } = mongoose;
 
 db.on('error', console.error.bind(console, 'connection error:'));
